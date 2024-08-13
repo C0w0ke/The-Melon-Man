@@ -3,8 +3,9 @@ game.player = {
 		y: 0,
 		height: 24,
 		highestY: 0,
-		direction: "left",
+		direction: "idle",
 		isInAir: false,
+		jumpCount: 0,
 		startedJump: false,
 		moveInterval: null,
 		fallTimeout: function(startingY, time, maxHeight) {
@@ -36,7 +37,8 @@ game.player = {
 		animations: {
 			// Describe coordinates of consecutive animation frames of objects in textures
 			left: [{tileColumn: 4, tileRow: 0}, {tileColumn: 5, tileRow: 0}, {tileColumn: 4, tileRow: 0}, {tileColumn: 6, tileRow: 0}],
-			right: [{tileColumn: 9, tileRow: 0}, {tileColumn: 8, tileRow: 0}, {tileColumn: 9, tileRow: 0}, {tileColumn: 7, tileRow: 0}]
+			right: [{tileColumn: 9, tileRow: 0}, {tileColumn: 8, tileRow: 0}, {tileColumn: 9, tileRow: 0}, {tileColumn: 7, tileRow: 0}],
+			idle: [{tileColumn: 3, tileRow: 0}]
 		},
 		jump: function (type) {
 			if (!this.isInAir) {

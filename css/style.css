@@ -74,6 +74,14 @@ canvas {
   justify-content: center;
 }
 
+.score {
+  font-family: 'superscript', Arial, sans-serif;
+  font-size: 22px;
+  color: black;
+  position: absolute;
+  text-align: center;
+}
+
 @media screen and (max-width: 900px) {
   .mobileControls {
     display: flex;

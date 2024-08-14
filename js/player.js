@@ -5,11 +5,18 @@ game.player = {
 		highestY: 0,
 		direction: "idle",
 		isInAir: false,
-		jumpCount: 0,
 		startedJump: false,
 		moveInterval: null,
+
+		fallTimeoutReset: null,
+
 		fallTimeout: function(startingY, time, maxHeight) {
-			setTimeout( function () {
+
+			if (this.fallTimeoutReset) {
+				clearTimeout(this.fallTimeoutReset) // Reset thời gian rơi để thực hiện double jump
+			}
+
+			this.fallTimeoutReset = setTimeout(function () {
 				if (this.isInAir) {
 					this.y = startingY - maxHeight + Math.pow((-time / 3 + 11), 2)
 					if (this.y < this.highestY) {
@@ -40,9 +47,9 @@ game.player = {
 			right: [{tileColumn: 9, tileRow: 0}, {tileColumn: 8, tileRow: 0}, {tileColumn: 9, tileRow: 0}, {tileColumn: 7, tileRow: 0}],
 			idle: [{tileColumn: 3, tileRow: 0}]
 		},
-		jump: function (type) {
-			if (!this.isInAir) {
-				clearInterval(this.fallInterval)
+		jump: function(type, doubleJump = false) {
+			if (!this.isInAir || doubleJump) {
+				clearTimeout(this.fallTimeoutReset)
 				game.sounds.jump.play()
 				this.isInAir = true
 				this.startedJump = true
@@ -55,5 +62,5 @@ game.player = {
 				}
 				this.fallTimeout(startingY, time, maxHeight)
 			}
-		}
+		},
 	}

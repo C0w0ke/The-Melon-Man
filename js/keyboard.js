@@ -64,7 +64,15 @@ game.keydown = function (event) {
 			game.moveRight()
 			break
 		case 32:
-			game.player.jump()
+			++game.jumpCount // Check số lần bấm nhảy 
+
+			if (game.jumpCount === 1) {
+				game.player.jump()
+			} 
+
+			if (game.jumpCount === 2) {
+				game.player.jump('', true)
+			}
 			break
 	}
 		game.pressedKeys[event.keyCode] = true
@@ -78,13 +86,18 @@ game.keyup = function (event) {
 		case 37:
 			clearInterval(game.player.moveLeftInterval)
 			game.player.direction = "idle"
-			game.player.animationFrameNumber = 0;
+			game.player.animationFrameNumber = 0
 			break
 		case 68:
 		case 39:
 			clearInterval(game.player.moveRightInterval)
 			game.player.direction = "idle"
-			game.player.animationFrameNumber = 0;
+			game.player.animationFrameNumber = 0
 			break
+		case 32: 					
+			game.pressedKeys[event.keyCode] = false
+			setTimeout(function () {
+				game.jumpCount = 0
+			}, 500)
 		}
 }

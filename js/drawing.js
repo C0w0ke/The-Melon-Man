@@ -79,9 +79,9 @@ game.redraw = function () {
 	game.counter.innerHTML = "Modified by C0w0ke | Controls: A, D / arrows and SPACE"
 
 	game.context.font = "15px superscript"
-	game.context.fillStyle = 'white'
-	game.context.fillText("Score: " + Math.round(-game.player.highestY / (3 * game.options.tileHeight)), 230, 150)
-
+	game.context.fillStyle = 'grey'
+	game.context.fillText("Score: " + Math.round(-game.player.highestY / (3 * game.options.tileHeight)), 220, 150)	
+		
 }
 
 game.requestRedraw = function () {

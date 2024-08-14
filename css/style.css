@@ -41,7 +41,7 @@ canvas {
 .counter {
   font-family: 'superscript', Arial, sans-serif;
   font-size: 22px;
-  color: black;
+  color: grey;
   position: absolute;
   bottom: 0;
   right: 20px;

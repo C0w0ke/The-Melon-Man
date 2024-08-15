@@ -36,6 +36,21 @@ game.drawPlayer = function () {
 	)
 }
 
+game.drawLava = function () {
+	let lavaTile = game.lavaSpawn.tiles[0];
+	game.context.drawImage(
+		game.textures,
+		lavaTile.tileColumn * game.options.tileWidth,
+		lavaTile.tileRow * game.options.tileHeight,
+		game.options.canvasWidth,
+		game.options.tileHeight,
+		0,
+		Math.round(game.options.canvasHeight / 2 - game.options.tileHeight / 2) + game.lavaSpawn.y - game.player.y,
+		game.options.canvasWidth * game.options.tileWidth / 3,
+		game.options.tileHeight * game.options.tileWidth / 3
+	)
+}
+
 game.redraw = function () {
 	game.drawPending = false
 
@@ -76,6 +91,11 @@ game.redraw = function () {
 	// Draw the player
 	game.drawPlayer()
 
+	// Draw the lava
+	if (game.lavaSpawn) {
+		game.drawLava()
+	}
+
 	game.counter.innerHTML = "Modified by C0w0ke | Controls: A, D / arrows and SPACE"
 
 	game.context.font = "15px superscript"
@@ -94,7 +114,7 @@ game.requestRedraw = function () {
 		clearInterval(this.player.fallInterval)
 		game.context.font = "30px superscript"
 		game.context.textAlign = "center"
-		game.context.fillStyle = "black"
+		game.context.fillStyle = "white"
 		game.context.fillText("Game over!", game.canvas.width / 2, game.canvas.height / 2)
 		game.context.font = "15px Georgia"
 		game.context.fillText("(Refresh the page to restart)", game.canvas.width / 2, game.canvas.height / 2 + 50)

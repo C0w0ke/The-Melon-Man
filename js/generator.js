@@ -46,13 +46,13 @@ game.generateMap = function () {
 			x: randomX,
 			y: -i * 3
 		})
-		if (Math.floor(Math.random() * 7) == 0) {
+		/*if (Math.floor(Math.random() * 7) == 0) {
 			this.map.structures.push({
 				name: "snowman",
 				x: randomX + Math.floor(Math.random() * 3),
 				y: -i * 3 - 1
 			})
-		}
+		}*/
 	}
 
 	for (var i = 40; i < 60; i++) {

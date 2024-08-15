@@ -2,15 +2,12 @@ function createLava(y, speed, height) {
     const lava = {
         y: y,
         speed: speed,
-        maxY: 0,
         update: null,
         isEnd: false,
         tiles: [{ tileColumn: 0, tileRow: 4 }],
 
         movingLava: function () {
-            this.maxY = this.y - height
             this.update = setInterval( function () {
-                
                 this.y -= this.speed
                 game.requestRedraw()
 
@@ -26,11 +23,10 @@ function createLava(y, speed, height) {
         },
 
         stopLava: function () {
-            const self = this
             setTimeout(function () {
                 game.lava = null
-                clearInterval(self.update)
-                self.update = null
+                clearInterval(this.update)
+                this.update = null
             }, 5000)
         }
     }
@@ -40,14 +36,13 @@ function createLava(y, speed, height) {
 }
 
 let lavaSpawning = false
-
 game.startSpawning = function () {
-    setInterval(function () {
-        let y = game.player.highestY
-        if (y < -100 && !lavaSpawning) {
-            game.lavaSpawn = createLava(0, 100, 1500)
-            lavaSpawning = true;
-            game.lavaSpawn.movingLava()
-        }
-    }, 1000)
+
+    let y = game.player.highestY
+    if (y < -100 && !lavaSpawning) {
+        game.lavaSpawn = createLava(0, 100, 1500)
+        lavaSpawning = true;
+        game.lavaSpawn.movingLava()
+    }
+
 }

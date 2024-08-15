@@ -33,7 +33,7 @@ var game = {
 		this.context.imageSmoothingEnabled = false
 
     this.backgrounds['sky'].image.src = "dungeonFire.png"
-		this.backgrounds['trees'].image.src = "trees.png"
+		this.backgrounds['trees'].image.src = "lavaBackground.png"
 
 		for (var key in this.backgrounds) {
 			this.backgrounds[key].image.onload = function (currentKey) {
